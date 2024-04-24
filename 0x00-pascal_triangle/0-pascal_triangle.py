@@ -13,9 +13,6 @@ def pascal_triangle(n):
 
     Returns:
         list of lists of int: Pascal's triangle.
-
-    Description compatible with -std=gnu89:
-        Generate Pascal's triangle up to nth row.
     """
 
     if n <= 0:

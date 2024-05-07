@@ -4,6 +4,7 @@ Module for calculating the fewest number of operations
 needed to result in exactly n H characters in the file.
 """
 
+
 def minOperations(n):
     """
     Calculates the fewest number of operations
@@ -17,7 +18,7 @@ def minOperations(n):
     """
     if n < 2:
         return 0
-    
+
     num_operations = 0
     divisor = 2
     while divisor <= n:

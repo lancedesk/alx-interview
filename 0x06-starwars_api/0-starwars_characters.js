@@ -2,26 +2,24 @@
 /**
  * Fetch Starwars Characters
  */
-const request = require('request');
+const req = require('request');
 
-function getCharacter (urls)
-{
-  if (urls.length === 0)
-  {
-      return;
-  }
-  request.get(urls[0], (_error, _response, body) =>
-  {
+const movieId = process.argv[2];
+const movieLink = `https://swapi-api.alx-tools.com/api/films/${movieId}`;
+
+req(movieLink, (err, res, body) => {
+  if (err) console.log(err);
+  const i = 0;
+  const characters = JSON.parse(body).characters;
+  movieChar(characters, i);
+});
+
+const movieChar = function (url, i) {
+  req(url[i], (err, res, body) => {
+    if (err) console.log(err);
     console.log(JSON.parse(body).name);
-    getCharacter(urls.slice(1));
+    if (++i < url.length) {
+      movieChar(url, i++);
+    }
   });
-}
-
-request.get(
-  'https://swapi-api.alx-tools.com/api/films/' + process.argv[2],
-  (_error, _response, body) =>
-  {
-    const characters = JSON.parse(body).characters;
-    getCharacter(characters);
-  }
-);
+};
